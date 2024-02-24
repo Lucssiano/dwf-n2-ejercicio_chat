@@ -1,5 +1,4 @@
-export function initHeader() {
-	class Header extends HTMLElement {
+class Header extends HTMLElement {
 		constructor() {
 			super();
 			this.render();
@@ -9,17 +8,13 @@ export function initHeader() {
 
 			const divRoot = document.createElement('header');
 			divRoot.classList.add('header');
-			divRoot.textContent = 'Header';
 
 			const style = document.createElement('style');
-			style.textContent = `
+			style.innerHTML = `
 					.header {
-						font-family : 'Poppins' , sans-serif;
-						font-size: 22px;
-						font-weight: 500;
+						height: 60px;
+						width: 100%;
 						background-color: #FF8282;
-						text-align: center;
-						padding: 20px 0;
 					}
 			`;
 
@@ -27,5 +22,4 @@ export function initHeader() {
 			shadow.appendChild(divRoot);
 		}
 	}
-	customElements.define('custom-header', Header);
-}
+customElements.define('custom-header', Header);

@@ -1,15 +1,14 @@
-export function initButtonComponent() {
-	class ButtonComponent extends HTMLElement {
+class ButtonComponent extends HTMLElement {
+		shadow: ShadowRoot;
 		constructor() {
 			super();
+			this.shadow = this.attachShadow({ mode: 'open' });
+		}
+		connectedCallback(){
 			this.render();
 		}
 		render() {
-			const shadow = this.attachShadow({ mode: 'open' });
-
 			const button = document.createElement('button');
-			this.textContent == 'Volver' ? (button.className = 'go-back-button') : (button.className = 'submit-button');
-
 			button.innerHTML = `
 					<custom-text variant="large">${this.textContent}</custom-text>
 			`;
@@ -19,25 +18,19 @@ export function initButtonComponent() {
 						* {
 							box-sizing: border-box;
 						}
-						.submit-button, .go-back-button {
+						button {
 							cursor: pointer;
-              border: none;
+							border: none;
 							border-radius: 4px;
-              padding: 15px 0;		
-              text-align: center;		
-              width: 100%;
-						}
-						.submit-button {
-              background-color:#9CBBE9;			
-						}
-						.go-back-button {
-							border: 2px solid #000;
-							background-color:#fff;			
+							padding: 15px 0;		
+							text-align: center;		
+							width: 100%;
+							background-color:#9CBBE9;			
 						}
 						`;
-			shadow.appendChild(style);
-			shadow.appendChild(button);
+
+			this.shadow.appendChild(style);
+			this.shadow.appendChild(button);
 		}
-	}
-	customElements.define('custom-button', ButtonComponent);
 }
+customElements.define('custom-button', ButtonComponent);
