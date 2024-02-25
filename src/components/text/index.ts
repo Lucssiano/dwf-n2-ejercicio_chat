@@ -4,7 +4,7 @@ class TextComponent extends HTMLElement {
 		super();
 		this.shadow = this.attachShadow({ mode: 'open' });
 	}
-	connectedCallback(){
+	connectedCallback() {
 		this.render();
 	}
 	render() {
@@ -22,7 +22,7 @@ class TextComponent extends HTMLElement {
 						}
 						.title {
 								font-family: 'Roboto', sans-serif;
-								font-size: 52px;
+								font-size: 35px;
 								font-weight: 700;
 						}
 						.large {
