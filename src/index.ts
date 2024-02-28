@@ -8,5 +8,9 @@ import './pages/chat';
 // /* Components */
 import './components/header';
 import './components/text';
-import './components/fieldset';
-import './components/button';
+// import './components/fieldset';
+// import './components/button';
+
+/* -- Estos ver de sacarlos -- */
+import './rtdb';
+import '../server';
