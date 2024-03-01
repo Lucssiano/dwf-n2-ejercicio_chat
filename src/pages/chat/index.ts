@@ -7,7 +7,11 @@ class ChatPage extends HTMLElement {
 		this.shadow = this.attachShadow({ mode: 'open' });
 	}
 	connectedCallback() {
-		this.render();
+        state.subscribe(()=> {
+            this.render();
+        });
+        state.init();
+        this.render();
 	}
 	render() {
 		this.shadow.innerHTML = `
