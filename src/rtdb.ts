@@ -25,10 +25,12 @@ onValue(
 								return `<p>${el.from}: ${el.message}</p>`;
 								/* Ver de hacer un <custom-text> */
 							})
-							.join('')}	
+							.join('')}
 					`;
 	},
 	(error) => {
 		console.error('Error al escuchar cambios en la base de datos:', error);
 	},
 );
+
+export { database };

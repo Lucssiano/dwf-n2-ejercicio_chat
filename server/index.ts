@@ -20,4 +20,13 @@ app.post('/messages', (req, res) => {
 	});
 });
 
+// app.get('/messages', (req, res) => {
+// 	const chatRoomRef = realTimeDB.ref('/chatroom/messages');
+// 	chatRoomRef.once('value', (snapshot) => {
+// 		const data = snapshot.val();
+// 		const dataArray = Object.values(data);
+// 		res.json(dataArray);
+// 	});
+// });
+
 app.listen(port);

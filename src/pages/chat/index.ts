@@ -43,6 +43,10 @@ class ChatPage extends HTMLElement {
         }
         .content-container{
             padding: 15px 30px;
+            height: 90vh;
+        }
+        .chat-container {
+            height: 60%;
         }
         .chat-form {
             margin-top: 10px;
