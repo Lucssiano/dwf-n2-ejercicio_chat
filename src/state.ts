@@ -1,50 +1,50 @@
-import { database as rtdb } from './rtdb';
-import * as lodash from "lodash"
+import * as lodash from 'lodash';
+import { rtdb } from './rtdb';
 import { ref, onValue } from 'firebase/database';
+
+// type Message = {
+// 	from: string;
+// 	message: string;
+// };
 
 const API_BASE_URL = 'http://localhost:3000';
 
 export const state = {
 	data: {
 		name: '',
+		messages: [],
 	},
 	listeners: [],
 	init() {
+		// localStorage.removeItem('name');
 		const chatroomsRef = ref(rtdb, '/chatroom/messages');
-        onValue(
+		onValue(
 			chatroomsRef,
 			(snapshot) => {
 				const data = snapshot.val();
 				const dataArray = lodash.map(data);
-				document.querySelector('.root').querySelector('chat-page').shadowRoot.querySelector('.chat-container').innerHTML = `
-								${dataArray
-									.map((el) => {
-										return `<p>${el.from}: ${el.message}</p>`;
-										/* Ver de hacer un <custom-text> */
-									})
-									.join('')}
-							`;
-			}, 
+
+				const currentState = this.getState();
+				currentState.messages = dataArray;
+				this.setState(currentState);
+			},
 			(error) => {
 				console.error('Error al escuchar cambios en la base de datos:', error);
 			},
-			{
-				onlyOnce : true
-			});
-		  
+		);
 	},
 	getState() {
 		return this.data;
 	},
 	setState(newState) {
 		this.data = newState;
-		/* Ver de guardarlo en localStorage */
 		this.listeners.forEach((callback) => callback());
 		console.log('nueva data', this.data);
 	},
 	setName(name: string) {
 		const currentState = this.getState();
 		currentState.name = name;
+		// localStorage.setItem('name', name);
 		this.setState(currentState);
 	},
 	pushMessage(message: string) {

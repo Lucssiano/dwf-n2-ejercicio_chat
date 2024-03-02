@@ -11,26 +11,26 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const database = getDatabase(app);
+const rtdb = getDatabase(app);
 
-const chatroomsRef = ref(database, '/chatroom/messages');
-onValue(
-	chatroomsRef,
-	(snapshot) => {
-		const data = snapshot.val();
-		const dataArray = lodash.map(data);
-		document.querySelector('.root').querySelector('chat-page').shadowRoot.querySelector('.chat-container').innerHTML = `
-						${dataArray
-							.map((el) => {
-								return `<p>${el.from}: ${el.message}</p>`;
-								/* Ver de hacer un <custom-text> */
-							})
-							.join('')}
-					`;
-	},
-	(error) => {
-		console.error('Error al escuchar cambios en la base de datos:', error);
-	},
-);
+export { rtdb };
 
-export { database };
+// const chatroomsRef = ref(database, '/chatroom/messages');
+// onValue(
+// 	chatroomsRef,
+// 	(snapshot) => {
+// 		const data = snapshot.val();
+// 		const dataArray = lodash.map(data);
+// 		document.querySelector('.root').querySelector('chat-page').shadowRoot.querySelector('.chat-container').innerHTML = `
+// 						${dataArray
+// 							.map((el) => {
+// 								return `<p>${el.from}: ${el.message}</p>`;
+// 								/* Ver de hacer un <custom-text> */
+// 							})
+// 							.join('')}
+// 					`;
+// 	},
+// 	(error) => {
+// 		console.error('Error al escuchar cambios en la base de datos:', error);
+// 	},
+// );

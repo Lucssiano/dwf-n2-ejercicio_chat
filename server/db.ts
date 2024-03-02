@@ -7,7 +7,6 @@ admin.initializeApp({
 	databaseURL: 'https://apx-dwf-m6-56070-default-rtdb.firebaseio.com',
 });
 
-const firestoreDB = admin.firestore();
 const realTimeDB = admin.database();
 
-export { firestoreDB, realTimeDB };
+export { realTimeDB };

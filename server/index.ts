@@ -1,5 +1,5 @@
 import express from 'express';
-import { realTimeDB, firestoreDB } from './db';
+import { realTimeDB } from './db';
 import { json } from 'body-parser';
 import cors from 'cors';
 // import { v4 as uuidv4 } from 'uuid';
